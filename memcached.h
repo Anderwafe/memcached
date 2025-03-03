@@ -934,6 +934,11 @@ enum delta_result_type do_add_delta(LIBEVENT_THREAD *t, const char *key,
                                     const int64_t delta, char *buf,
                                     uint64_t *cas, const uint32_t hv,
                                     item **it_ret);
+int do_mult_delta(LIBEVENT_THREAD *t, const char *key, const size_t nkey,
+        const int64_t delta,
+        char *buf, uint64_t *cas,
+        const uint32_t hv,
+        item **it_ret);
 enum store_item_type do_store_item(item *item, int comm, LIBEVENT_THREAD *t, const uint32_t hv, int *nbytes, uint64_t *cas, const uint64_t cas_in, bool cas_stale);
 void thread_io_queue_add(LIBEVENT_THREAD *t, int type, void *ctx, io_queue_stack_cb cb);
 io_queue_t *thread_io_queue_get(LIBEVENT_THREAD *t, int type);
@@ -994,6 +999,10 @@ enum delta_result_type add_delta(LIBEVENT_THREAD *t, const char *key,
                                  const size_t nkey, bool incr,
                                  const int64_t delta, char *buf,
                                  uint64_t *cas);
+int mult_delta(LIBEVENT_THREAD *t, const char *key,
+                const size_t nkey,
+                const int64_t delta, char *buf,
+                uint64_t *cas);
 void accept_new_conns(const bool do_accept);
 void  conn_close_idle(conn *c);
 void  conn_close_all(void);
